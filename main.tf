@@ -1,16 +1,16 @@
 #Vpc
 
 resource "aws_vpc" "vpc1" {
-    cidr_block = var.vpc-cidr_block
-    enable_dns_hostnames = true
-    enable_dns_support = true
-    instance_tenancy = "default"
+  cidr_block           = var.vpc-cidr_block
+  enable_dns_hostnames = true
+  enable_dns_support   = true
+  instance_tenancy     = "default"
 
-    tags={
-        Name = "Vpc-resume-app"
-        env = "dev"
-        Team = "devops"
-    }
+  tags = {
+    Name = "Vpc-resume-app"
+    env  = "dev"
+    Team = "devops"
+  }
 }
 // internet gateway
 resource "aws_internet_gateway" "gw" {
@@ -24,18 +24,18 @@ resource "aws_internet_gateway" "gw" {
 #Public Subnet
 
 resource "aws_subnet" "sub1" {
-  vpc_id     = aws_vpc.vpc1.id
-  cidr_block = "10.0.1.0/24"
-  availability_zone = "us-east-1a"
+  vpc_id                  = aws_vpc.vpc1.id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "us-east-1a"
   map_public_ip_on_launch = true
   tags = {
     Name = "public-1a"
   }
 }
 resource "aws_subnet" "sub2" {
-  vpc_id     = aws_vpc.vpc1.id
-  cidr_block = "10.0.2.0/24"
-  availability_zone = "us-east-1b"
+  vpc_id                  = aws_vpc.vpc1.id
+  cidr_block              = "10.0.2.0/24"
+  availability_zone       = "us-east-1b"
   map_public_ip_on_launch = true
   tags = {
     Name = "public-1b"
@@ -45,16 +45,16 @@ resource "aws_subnet" "sub2" {
 #Private Subnet
 
 resource "aws_subnet" "sub3" {
-  vpc_id     = aws_vpc.vpc1.id
-  cidr_block = "10.0.3.0/24"
+  vpc_id            = aws_vpc.vpc1.id
+  cidr_block        = "10.0.3.0/24"
   availability_zone = "us-east-1a"
   tags = {
     Name = "private-1a"
   }
 }
 resource "aws_subnet" "sub4" {
-  vpc_id     = aws_vpc.vpc1.id
-  cidr_block = "10.0.4.0/24"
+  vpc_id            = aws_vpc.vpc1.id
+  cidr_block        = "10.0.4.0/24"
   availability_zone = "us-east-1b"
   tags = {
     Name = "private-1b"
